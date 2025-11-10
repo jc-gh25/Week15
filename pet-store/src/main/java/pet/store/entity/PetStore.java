@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Data
@@ -45,15 +46,18 @@ public class PetStore {
 	private String petStorePhone;
 	
 	//Relationships 
-
+	
+	// Relationship 1: PetStore to Employee
     // One to many: a store has many employees
     @OneToMany(mappedBy = "petStore",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonManagedReference("petstore-employee")
     private Set<Employee> employees = new HashSet<>();
-
+    
+    // Relationship 2: PetStore to Customer
     // Many to many: many stores and many customers
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "pet_store_customer",
@@ -61,6 +65,7 @@ public class PetStore {
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonManagedReference("petstore-customer")
     private Set<Customer> customers = new HashSet<>();
     
     

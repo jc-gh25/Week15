@@ -9,19 +9,19 @@ import pet.store.entity.PetStore;
 @NoArgsConstructor
 public class PetStoreEmployee {
 	private Long employeeId;
-	private PetStore petStore; // owning side of the one to many relation
+	//private PetStore petStore; // owning side of the one to many relation
 	private String employeeFirstName;
 	private String employeeLastName;
 	private String employeePhone;
 	private String employeeJobTitle;
 
 	public PetStoreEmployee(Employee employee) {
-		employeeId = employee.getEmployeeId();
-		petStore = employee.getPetStore();
-		employeeFirstName = employee.getEmployeeFirstName();
-		employeeLastName = employee.getEmployeeLastName();
-		employeePhone = employee.getEmployeePhone();
-		employeeJobTitle = employee.getEmployeeJobTitle();
+		this.employeeId = employee.getEmployeeId();
+		//this.petStore = employee.getPetStore();
+		this.employeeFirstName = employee.getEmployeeFirstName();
+		this.employeeLastName = employee.getEmployeeLastName();
+		this.employeePhone = employee.getEmployeePhone();
+		this.employeeJobTitle = employee.getEmployeeJobTitle();
 	}
 
 } // end of class

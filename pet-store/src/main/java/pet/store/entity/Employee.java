@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -23,6 +24,7 @@ public class Employee {
 	
 	@ManyToOne(cascade = CascadeType.ALL) 
 	@JoinColumn(name = "pet_store_id")
+	@JsonBackReference("petstore-employee")
 	private PetStore petStore; // owning side of the one to many relation
 	
 	@Column(name = "employee_first_name")

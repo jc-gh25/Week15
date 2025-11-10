@@ -78,7 +78,7 @@ public class PetStoreService {
 	
 	private void copyEmployeeFields(Employee employee, PetStoreEmployee petstoreEmployee) {
 	    employee.setEmployeeFirstName(petstoreEmployee.getEmployeeFirstName());
-	    employee.setEmployeeId(petstoreEmployee.getEmployeeId());
+	    //employee.setEmployeeId(petstoreEmployee.getEmployeeId());
 	    employee.setEmployeeJobTitle(petstoreEmployee.getEmployeeJobTitle());
 	    employee.setEmployeeLastName(petstoreEmployee.getEmployeeLastName());
 	    employee.setEmployeePhone(petstoreEmployee.getEmployeePhone());

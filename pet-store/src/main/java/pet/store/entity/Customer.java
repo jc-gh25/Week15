@@ -10,9 +10,10 @@ import jakarta.persistence.ManyToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 @Data
@@ -39,6 +40,7 @@ public class Customer {
     @ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonBackReference("petstore-customer")
     private Set<PetStore> petStores = new HashSet<>();
 
 }
