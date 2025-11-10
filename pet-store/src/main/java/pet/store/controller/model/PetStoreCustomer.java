@@ -14,16 +14,16 @@ public class PetStoreCustomer {
 	private String customerFirstName;
 	private String customerLastName;
 	private String customerEmail;
-	private Set<PetStore> petStores = new HashSet<>();
+	private Set<Long> petStoreIds = new HashSet<>();
 
 	public PetStoreCustomer(Customer customer) {
-		customerId = customer.getCustomerId();
-		customerFirstName = customer.getCustomerFirstName();
-		customerLastName = customer.getCustomerLastName();
-		customerEmail = customer.getCustomerEmail();
+		this.customerId = customer.getCustomerId();
+		this.customerFirstName = customer.getCustomerFirstName();
+		this.customerLastName = customer.getCustomerLastName();
+		this.customerEmail = customer.getCustomerEmail();
 
 		for (PetStore store : customer.getPetStores()) {
-			petStores.add(store);
+			this.petStoreIds.add(store.getPetStoreId());
 		}
 	}
 

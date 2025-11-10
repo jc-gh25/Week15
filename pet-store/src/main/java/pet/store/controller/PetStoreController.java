@@ -86,13 +86,28 @@ public class PetStoreController {
 	
 
 	// DELETE
+	
 	// Deletes the pet store associated with the provided ID.
 	@DeleteMapping("/{petstoreId}")
 	public Map<String, String> deletePetStoreById(@PathVariable Long petstoreId) {
 	    log.info("Deleting pet with ID {}", petstoreId);
 	    petStoreService.deletePetStoreById(petstoreId);
-	    return Map.of("message", "Pet store with ID " + petstoreId + "was deleted.");
+	    return Map.of("message", "Pet store with ID " + petstoreId + " was deleted.");
 	}
+	
+	// NEW: Delete a customer from a specific store
+    @DeleteMapping("/{petstoreId}/customer/{customerId}")
+    public Map<String, String> deleteCustomerFromStore(
+            @PathVariable Long petstoreId,
+            @PathVariable Long customerId) {
+
+        log.info("Deleting customer {} from pet store {}", customerId, petstoreId);
+        petStoreService.deleteCustomerFromStore(petstoreId, customerId);
+        return Map.of(
+                "message",
+                String.format("Customer with ID %d was removed from pet store %d.", customerId, petstoreId));
+    }
+
 
 
 

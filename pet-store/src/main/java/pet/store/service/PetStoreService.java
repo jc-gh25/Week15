@@ -191,6 +191,37 @@ public class PetStoreService {
 	    petStoreDao.delete(petstore);
 	}
 
+	 
+    // Removes the given customer from the given pet store.
+    // Also deletes the Customer entity from the DB (cascade = PERSIST only, so we delete explicitly).
+    // Throws NoSuchElementException if either the store or the customer does not exist,
+    // or if the customer is not linked to the store.
+    
+    public void deleteCustomerFromStore(Long petstoreId, Long customerId) {
+        // Load the store (throws if not found)
+        PetStore store = petStoreDao.findById(petstoreId)
+                .orElseThrow(() -> new NoSuchElementException(
+                        "Pet store with ID=" + petstoreId + " was not found."));
+
+        // Load the customer (throws if not found)
+        Customer customer = customerDao.findById(customerId)
+                .orElseThrow(() -> new NoSuchElementException(
+                        "Customer with ID=" + customerId + " was not found."));
+
+        // Verify the association exists
+        if (!store.getCustomers().contains(customer)) {
+            throw new IllegalArgumentException(
+                    "Customer ID " + customerId + " is not associated with pet store ID " + petstoreId);
+        }
+
+        // Break the bi-directional link
+        store.getCustomers().remove(customer);
+        customer.getPetStores().remove(store);
+
+        // Delete the customer entity (or just leave it detached if you prefer)
+        customerDao.delete(customer);
+    }
+
 
 
 } // end of class
