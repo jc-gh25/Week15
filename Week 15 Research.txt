@@ -1,0 +1,28 @@
+Week 15 Research
+
+Spring Boot:
+
+1. Research Spring Boot vs. Spring.  Describe each.  How do they relate?  Why do we use Spring Boot?
+
+Spring is a comprehensive Java framework that provides core features such as dependency injection, aspect-oriented programming, and a rich ecosystem of modules (MVC, Security, Data, etc). Spring Boot builds on top of Spring by supplying sensible defaults, auto-configuration, and an embedded runtime so you can create production-ready applications with minimal boilerplate. In the bootcamp we use Spring-Boot because it lets us focus on learning core concepts, like REST endpoints, data access, and testing, without spending time typing XML files or managing external servlet containers.
+
+2. What are the annotations used for CRUD operations in Spring Boot? 
+Spring-Boot (via Spring-Data-JPA) uses a small set of annotations to map HTTP verbs to repository methods:
+
+@GetMapping (read), @PostMapping (create), @PutMapping or @PatchMapping (update), and @DeleteMapping (delete). 
+At the persistence layer, entity classes are marked with @Entity, primary keys with @Id, and fields with @Column. 
+Repository interfaces extend JpaRepository (or CrudRepository) and inherit methods like save(), findById(), findAll(), and deleteById() without extra code.
+
+3. Describe the difference between Hibernate & Spring Boot JPA
+
+Hibernate is a specific implementation of the Java Persistence API (JPA). It handles the low-level ORM mapping, session management, and SQL generation. Spring-Boot-JPA is a higher-level abstraction that configures a JPA provider (such as Hibernate) automatically, and supplies convenient Spring-centric utilities (repositories, transaction management, entity scanning). You can write JPA-standard annotations and let Spring-Boot use Hibernate or another provider behind the scenes.
+
+4. What is Tomcat? How does it relate to Spring Boot?
+
+Apache Tomcat is a lightweight servlet container that implements the Java Servlet, JSP, and WebSocket specifications. Spring-Boot bundles an embedded Tomcat instance by default, meaning the application runs as a self-contained JAR and starts its own web server at launch. This eliminates the need to deploy a WAR file to an external Tomcat server, simplifying development and deployment while still allowing you to swap Tomcat for Jetty or Undertow if desired.
+
+Java Build Tool Comparison:
+
+5. Research Build Tools: Gradle vs. Maven. Compare and contrast.  Why would you choose one over the other?
+
+Both Gradle and Maven manage dependencies, compile code, run tests, and package artifacts, but they differ in design philosophy and flexibility. Maven follows a declarative XML model with a fixed lifecycle. It’s straightforward, highly reproducible, and has a massive plugin ecosystem, which makes it easy for beginners to grasp. Gradle uses a Groovy/Kotlin DSL that allows imperative scripting, resulting in faster incremental builds and finer-grained control over tasks. Its build cache and parallel execution can result in better performance for large projects. Maven is useful for minimal configuration, stability, and a predictable build process. Gradle can be better for speed, custom build logic, or to integrate tightly with modern IDEs and CI pipelines.
