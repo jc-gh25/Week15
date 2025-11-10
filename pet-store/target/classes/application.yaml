@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: pet_store
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/pet_store
+    username: pet_store
+    password: pet_store
+
+  jpa:
+    hibernate:
+      ddl-auto: update # create-drop will drop the tables on shutdown and create them on startup. Useful for unit test development where you want a clean slate each run.
+    show-sql: true
+    defer-datasource-initialization: true # Don't run data.sql before creating the tables
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  
+  sql:
+    init:
+      mode: never # always will populate with sample data in data.sql after tables are created
